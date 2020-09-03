@@ -9,7 +9,45 @@
     <script>
         // git 
         // object creation and prototype objects 
-        
+        // call by reference and call by value
+
+        var name = 'javascript';
+        var name1 = name ;
+        console.log(name1)// javascript
+        name1 = 'html';
+        console.log(name); // 'javascript'
+        // step1
+        var srikanth = {
+            name: 'sri',
+            age: 25,
+            details:function(){
+                console.log(this, this.name, this.age);
+                var data = this;
+                function xyz(){
+                    var ethis = data;
+                    console.log(ethis, data);
+                }
+                xyz();
+            }
+        }
+
+        var ravi = srikanth;
+        console.log(ravi);
+        ravi.name = 'ravi';
+        ravi.age = 30;
+        console.log(ravi);
+        console.log('srikanth',srikanth);
+        // step2
+        var pavan = Object.create(srikanth);
+        pavan.name = 'pavan';
+        console.log(pavan);
+
+        // step 3
+        function Furniture(){
+            console.log(this);
+        }
+        Furniture();
+
     </script>
 </body>
 </html>
