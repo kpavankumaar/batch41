@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(this);
+        function FinanceUser (loan){
+            this.loan = loan;
+        }
+        function CareerUser (grade,degree, games){
+            this.degree = degree;
+            this.games = games;
+            this.detailsOfCareer = function(){
+                console.log(this.degree + ' ' + this.games);
+            }
+        }
+        function CreateUserData(firstName, lastName, criteria1 ){
+           firstName = typeof firstName === 'string' ? firstName : 'invalid argument';
+           if(firstName !== 'invalid argument'){
+            this.firstName = firstName;
+            this.lastName = lastName;
+            // this.fullName = function(){
+            //     console.log(this.firstName,  this.lastName);
+            // }
+            var criteriaBasedSelection = CareerUser.bind(this, "7.5 gpa ",criteria1);
+            criteriaBasedSelection('kabbadi');
+            //CareerUser.apply(this, ["mca", "football"]);
+            FinanceUser.call(this, "100000");
+
+           }
+            
+        }
+        CreateUserData.prototype.fullName = function(){
+                console.log(this.firstName,  this.lastName);
+            }
+        var userInfo = new CreateUserData('Ravi','Kumar', 'diploma');
+        
+    </script>
+</body>
+</html>
