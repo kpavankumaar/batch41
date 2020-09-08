@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // asyncronous 
+        console.log('before');
+        // setInterval(function(){
+        //     console.log('print the data ');
+        // },1000)
+        console.log('after');
+        // closures 
+        function luckyKids (grade){
+            return function classes(section){
+                console.log(grade +'  '+ section) 
+            }
+        }
+    </script>
+</body>
+</html>

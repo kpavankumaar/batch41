@@ -14,10 +14,15 @@
         function CareerUser (grade,degree, games){
             this.degree = degree;
             this.games = games;
-            this.detailsOfCareer = function(){
-                console.log(this.degree + ' ' + this.games);
-            }
+            // this.detailsOfCareer = function(){
+            //     console.log(this.degree + ' ' + this.games);
+            // }
         }
+        CareerUser.prototype.detailsOfCareer = function(){
+            console.log(this.degree + ' ' + this.games);
+        }
+        var sampleCareerVar = new CareerUser();
+
         function CreateUserData(firstName, lastName, criteria1 ){
            firstName = typeof firstName === 'string' ? firstName : 'invalid argument';
            if(firstName !== 'invalid argument'){
@@ -34,9 +39,11 @@
            }
             
         }
+        CreateUserData.prototype = Object.create(CareerUser.prototype);
         CreateUserData.prototype.fullName = function(){
                 console.log(this.firstName,  this.lastName);
             }
+        CreateUserData.prototype.constructor = CreateUserData;
         var userInfo = new CreateUserData('Ravi','Kumar', 'diploma');
         
     </script>

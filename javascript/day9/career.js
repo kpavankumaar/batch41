@@ -1,3 +1,4 @@
+
 function CareerUser (grade,degree, games){
     this.degree = degree;
     this.games = games;
