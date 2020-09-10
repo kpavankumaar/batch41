@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    <script>
+        var renderDataToPage = document.getElementsByTagName('p')[0];
+        console.log(1);
+        setTimeout(function(){
+            console.log(2);
+        }, 0);
+        console.log(3);
+        console.log(4);
+        // promise 
+        // ajax 
+        // fetch 
+        var urlAdd = 'https://jsonplaceholder.typicode.com/posts';
+        function makeAjaxCall(url){
+
+            
+            var prm = function(resolve, reject){
+                var xhr = new XMLHttpRequest();
+                console.log(xhr.readyState);
+                xhr.open('GET', url, true);
+                console.log(xhr.readyState);
+                xhr.send();
+                console.log(xhr.readyState);
+                xhr.addEventListener('readystatechange' , function(item){
+                    if(item.target.responseText){
+                        console.log('readystate ' ,xhr.readyState);
+                        console.log(item.target.responseText);
+                    }
+                    
+                    
+                })
+                //resolve(10);
+                console.log(xhr.readyState);
+                reject('error')
+
+            }
+            var success = function(item){
+                console.log(item);
+                renderDataToPage.innerHTML = item;
+
+            }
+            var objNum = new Promise(prm);
+            objNum.then(success);
+            objNum.catch(function(item){
+                renderDataToPage.innerHTML = item;
+            })
+
+        }
+        makeAjaxCall(urlAdd);
+    </script>
+</body>
+</html>

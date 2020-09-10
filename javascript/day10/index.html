@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
+    <h3>async </h3>
+    <button> add content </button>
+    <div>
+        <form>
+            <label for="firstname"> FirstName </label> <input id = "firstname" type="text"> <br>
+            <label for="email"> Email </label> <input id = "email" type="email"> <br>
+            <label for="phone"> Phone</label> <input type="phone">
+        </form>
+    </div>
     <script>
         // asyncronous 
         console.log('before');
@@ -15,10 +31,28 @@
         console.log('after');
         // closures 
         function luckyKids (grade){
-            return function classes(section){
-                console.log(grade +'  '+ section) 
+            var school = 'Gurukul';
+            return function (section){
+                console.log(grade +' th '+ section + ' ' + school);
             }
         }
+        luckyKids(4)('E');
+        function engine (req , process){
+            //installtion();
+            process();
+            return req 
+        }
+        engine('liquid cooled engine',function(){
+            console.log('part1' + ' part2' + ' part3')
+        })
+        var buttonEl = document.getElementsByTagName('button')[0];
+        buttonEl.addEventListener('click',function(){
+            console.log('you have clicked on button element ');
+            var inputField = document.getElementById('firstname');
+            console.log(inputField.value);
+            inputField.style.display = 'none';
+        })
+
     </script>
 </body>
 </html>
