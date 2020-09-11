@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var url = 'https://jsonplaceholder.typicode.com/photos';
+        var url1 = 'https://jsonplaceholder.typicode.com/posts';
+        var url2 = 'https://jsonplaceholder.typicode.com/comments';
+
+        //function 
+        
+        var p1 = new Promise( function(resolve, reject){  
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', url);
+            
+            xhr.addEventListener('readystatechange', function(item){
+                if(xhr.readyState == 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        resolve(JSON.parse(item.target.responseText));
+                    }else{
+                        reject(item);
+                    }
+                }
+            })
+            xhr.send();
+            
+        })
+        var p2 = new Promise( function(resolve, reject){  
+            var xhr = new XMLHttpRequest();
+            xhr.open('post', url1);
+            
+            xhr.addEventListener('readystatechange', function(item){
+                if(xhr.readyState == 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        resolve(JSON.parse(item.target.responseText));
+                    }else{
+                        reject(item);
+                    }
+                }
+            })
+            xhr.send();
+            
+        })
+        var p3 = new Promise( function(resolve, reject){  
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', url2);
+            
+            xhr.addEventListener('readystatechange', function(item){
+                if(xhr.readyState == 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        resolve(JSON.parse(item.target.responseText));
+                    }else{
+                        reject(item);
+                    }
+                }
+            })
+            xhr.send();
+            
+        })
+        Promise.all([p1,p2,p3]).then(function(item){
+            console.log(item);
+
+        }).catch(function(item){
+            console.log(new Error());
+        })
+        
+
+
+    </script>
+    
+</body>
+</html> 

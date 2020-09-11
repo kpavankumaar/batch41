@@ -21,20 +21,24 @@
         var urlAdd = 'https://jsonplaceholder.typicode.com/posts';
         function makeAjaxCall(url){
 
-            
+            var xhr = new XMLHttpRequest();
             var prm = function(resolve, reject){
-                var xhr = new XMLHttpRequest();
+                
                 console.log(xhr.readyState);
-                xhr.open('GET', url, true);
+                xhr.open('post', url, true);
                 console.log(xhr.readyState);
-                xhr.send();
+                var obj = {
+                    name: 'ajax call ',
+
+                }
+                var sendData = JSON.stringify(obj);
+                xhr.send(sendData);
                 console.log(xhr.readyState);
                 xhr.addEventListener('readystatechange' , function(item){
                     if(item.target.responseText){
                         console.log('readystate ' ,xhr.readyState);
                         console.log(item.target.responseText);
                     }
-                    
                     
                 })
                 //resolve(10);
