@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {};
+        // IIFE
+        (function sample(num1){
+            var num = 30;
+            num * num1
+        })()
+
+        const _num = 20;
+        const _obj = {
+            name:'javascript'
+        }
+        let data = 20 
+        function run(){
+            console.log(data);
+        }
+        run();
+        function getData(i){
+            setTimeout(function(){
+                console.log('inside the settimeout',i);
+            },0);     
+        }
+        for(let i = 0 ; i < 10 ; i++){
+            console.log('outside the settimeout',i);
+            getData(i);
+        }
+        console.log(i)
+
+    </script>
+    <script>
+        console.log(data);
+    </script>
+</body>
+</html>
