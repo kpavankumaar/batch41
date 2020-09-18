@@ -1,93 +1,29 @@
-import { Observable } from "Rxjs";
-// // why do we need observable 
-
-// // Observer Pattern 
-// class Producer {
-//     listeners:[];
-//     constructor(){
-//         this.listeners = [];
-//     }
-//     add(listener){
-//         this.listeners.push(listener)
-//     }
-//     remove(listener){
-//         const index = this.listeners.indexOf(listener)
-//         this.listeners.splice(index,1)
-//     }
-//     notify(message:any){
-//         this.listeners.forEach((listener) => {
-//             listener.update(message);
-//         })
-//     }
-
+import { Observable } from "rxjs";
+// var observer = {
+//     next: (val) => {console.log("next", val)},
+//     error: (val) => {console.log(val)},
+//     complete: () => console.log('completed')
 // }
-
-// const listener1 = {
-//     update: message => {
-//         console.log("listener 1 received:" , message);
-
-//     }
-// };
-// const listener2 = {
-//     update: message => {
-//         console.log("listener 2 received:" , message);
-
-//     }
-// };
-
-// const notifier = new Producer();
-// notifier.add(listener1);
-// notifier.remove(listener1);
-
-// iterator pattern 
-
-class MultipleIterator {
-    cursor: number;
-    array: Number[];
-    divisor: number;
-    constructor(arr:Number[], divisor = 1){
-        this.cursor = 0 ;
-        this.array = arr;
-        this.divisor = divisor;
-    }
-
-    next(){
-        while(this.cursor < this.array.length){
-            const value = this.array[this.cursor++];
-            if(value % this.divisor === 0 ){
-                return value;
+function get(url){
+    return Observable.create(function(item) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', url);
+        xhr.onload = () => {
+            if(xhr.status === 200){
+                item.next(xhr.response);
+                item.complete();
+            }else{
+                item.error(xhr.status);        
             }
         }
-    }
-    hasNext(){
-        let cur = this.cursor;
-        while(cur < this.array.length)  {
-            if (this.array[cur++] % this.divisor === 0) {
-                return true;
-            } 
-                
-            
-        }return false;
-    }
+        xhr.send();
+    })
 }
-const consumer = new MultipleIterator([1,2,3,4,5,6,7,8,9,10],3)
-console.log(consumer.next(), consumer.hasNext());
-console.log(consumer.next(), consumer.hasNext());
-console.log(consumer.next(), consumer.hasNext());
-console.log(consumer.next(), consumer.hasNext());
 
-const observable = Observable.create( observer => {
-    observer.next("Ravi");
-    setTimeout(()=>{
-        observer.next("Pavan");
-    } , 2000)
+let ajaxObservable = get('https://jsonplaceholder.typicode.com/commen');
 
-    observer.next("srk")
-    //observer.complete();// we are done 
-} )
-observable.subscribe(
-    (item) => {console.log("next",item)} ,
-    (error) => {console.log(error);},
-    () => {console.log("completed");}
- )  
-
+ajaxObservable.subscribe(
+    value => { console.log(value)},
+    value => { console.log(value)},
+    () => { console.log('completed')}
+)
