@@ -23,13 +23,13 @@
         var p3 = new Promise( function(resolve, reject){  
             apiCall(resolve, reject, 'get', url2);    
         })
-        p1.then(function(item){
-            return 10
-        }).then(function(item){
-            console.log(item)
-        }).catch(function(){
+        // p1.then(function(item){
+        //     return 10
+        // }).then(function(item){
+        //     console.log(item)
+        // }).catch(function(){
 
-        })
+        // });
         Promise.all([p1,p2,p3]).then(function(item){
             console.log(item);
 

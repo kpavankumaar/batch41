@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>heading</h2>
+    <input type="text">
+    <script>
+        var i = 10 
+        function combine(num1, num2){
+            return num1 + num2 ;
+            //i = 20 
+        }
+        combine(1,2);
+        var input = document.getElementsByTagName('input')[0];
+        input.addEventListener('input',(item) => {
+            console.log(item.target.value);
+        })
+        // function (element, value){
+        //     document.getElementsByTagName(element)[0].innerText = value;
+        // }
+        var arr = [1,2,3,4, null]
+        arr.forEach(item => {
+            item * 2
+        });
+        var arr1 = arr.map(item => item*2 ).map(item => item* 3);
+
+        var a = 20 ;
+        var b = 30;
+        var c = a + b ;
+        a = 10;
+
+    </script>
+    <script src="https://npmcdn.com/@reactivex/rxjs@5.0.0-beta.6/dist/global/Rx.umd.js"></script>
+
+    <script type="module">
+        // observable , observer , subscriber 
+        
+        Rx.Observable.of(1,2,3).subscribe((item) => {
+            console.log(item);
+        })
+
+    </script>
+    
+</body>
+</html>
