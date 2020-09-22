@@ -75,7 +75,7 @@ console.log(consumer.next(), consumer.hasNext());
 console.log(consumer.next(), consumer.hasNext());
 console.log(consumer.next(), consumer.hasNext());
 console.log(consumer.next(), consumer.hasNext());
-var observer= {
+var observer = {
     next: (val) => {console.log("next", val)},
     error: (val) => {console.log(val)},
     complete: () => console.log('completed')
