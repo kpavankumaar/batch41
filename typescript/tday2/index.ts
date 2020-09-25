@@ -40,3 +40,18 @@ data.fun();
 let num2 : any = 6;
 num2.ifItExists();
 num2.fun().data.use;
+
+function getData(): void {
+    console.log('value');
+}
+let dataType: void  = undefined ;
+dataType = null;
+
+let data3: undefined = null;
+let datanull : null = undefined; 
+
+function error():never {
+    //while(true){}
+    throw new Error();
+
+}

@@ -87,3 +87,5 @@ asyncObservable$.subscribe(([data1Info, data2Info]) => {
 const source$ = fromEvent(document, 'click');
 const sample = source$.pipe(map(e => `${e.timeStamp}`));
 sample.subscribe(val => console.log(val));
+
+
