@@ -1,0 +1,18 @@
+
+  ul{
+    background-color: grey;
+  }
+  ul li{
+    list-style-type: none;
+    float: left;
+    padding-left: 20px;
+  }
+  ul li a {
+    color:white;
+  }
+  ul::after, ul::before{
+    content: "";
+    display: block;
+    clear:both;
+  }
+  
