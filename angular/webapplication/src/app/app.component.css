@@ -4,8 +4,9 @@
   }
   ul li{
     list-style-type: none;
-    float: left;
+    /* float: left; */
     padding-left: 20px;
+    margin: 10px;
   }
   ul li a {
     color:white;
@@ -16,3 +17,11 @@
     clear:both;
   }
   
+.test{
+  color: lightskyblue;
+  background-color: grey;
+}
+
+  .box{
+    font-weight: bold;
+  }

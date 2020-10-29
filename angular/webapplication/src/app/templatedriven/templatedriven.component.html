@@ -1,0 +1,124 @@
+<form #data = "ngForm" (ngSubmit) = "compileFormData(data)">
+  <div ngModelGroup = "person" [ngClass] = "{'is-invalid': data.controls.person?.invalid}">
+    <div class="form-group"  > <!--- form-group bootstrap class -->
+        <label for="fname">FirstName</label>
+        <input type="text"
+                class="form-control" 
+                id="fname"
+                name="firstName"
+                placeholder="first name"
+                ngModel
+                [ngClass] = "{'is-invalid': data?.controls.person?.controls.firstName?.invalid}"
+                required
+                ><!--- bootstrap class -->
+         <div class="form-group" 
+             [ngClass] = "{'invalid-feedback': data?.controls.person?.controls.firstName?.invalid, 
+                          'displayhide':data?.controls.person?.controls.firstName?.valid
+                        }"
+          > 
+             Please enter a valid information 
+        </div>
+        <div>
+          <ul>
+            <li>Pristine : {{data.controls.firstName?.pristine}}</li>
+            <li>Dirty : {{data.controls.firstName?.dirty}}</li>
+            <li>Valid: {{data.controls.firstName?.valid}}</li>
+            <li>invalid: {{data.controls.firstName?.invalid}}</li>
+            <li>touched: {{data.controls.firstName?.touched}}</li>
+            <li>Untouched: {{data.controls.firstName?.untouched}}</li>
+
+          </ul>
+          
+          
+
+        </div>            
+    </div>
+
+    <div class="form-group">
+    <label for="lname">LastName</label>
+    <input 
+      type= "text" 
+      class="form-control"
+      id="lname" 
+      name="lastName"
+      ngModel
+      #lastNameFcontrol = "ngModel"
+      placeholder="last name"
+      required
+      
+      [ngClass] = "{'is-invalid': lastNameFcontrol.control.invalid}"
+      
+      >
+      <div class="form-group" 
+      [ngClass] = "{'invalid-feedback': lastNameFcontrol.control.invalid, 
+                    'displayhide':lastNameFcontrol.control.valid
+                  }"
+          > 
+             Please enter a valid information 
+        </div>
+        <p>{{lastNameFcontrol.control.valid}}</p>
+    </div>
+    
+  </div> 
+  <div class="form-group" 
+      [ngClass] = "{'invalid-feedback': data.controls.person.invalid,
+                    'displayhide': data.controls.person.valid
+                    }"
+          > 
+             Invalid first name or last name
+        </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Email address</label>
+      <input 
+        type="email" 
+        class="form-control" 
+        id="exampleFormControlInput1" 
+        placeholder="name@example.com"
+        name="emailfield"
+        ngModel
+        #emailC = "ngModel"
+        pattern ="[^@]*@[^@]*"
+        minlength="3"
+        (keyup) = "emailValidation(emailC)"
+        [ngClass] = "{'is-invalid': emailC.control.invalid}"
+      >
+      <div class="form-group" 
+      [ngClass] = "{'invalid-feedback': !!emailC.control.errors?.pattern,
+                    'displayhide': !emailC.control.errors?.pattern
+                    }"
+          > 
+             invalid email address
+        </div>
+      <div class="form-group" 
+      [ngClass] = "{'invalid-feedback': emailC.control.errors?.minlength, 
+                    'displayhide': !emailC.control.errors?.minlength
+                  }"
+          > 
+             email requires atleast 3 characters
+        </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleFormControlSelect2">Example multiple select</label>
+      <select 
+        multiple 
+        class="form-control" 
+        ngModel 
+        name = "country" 
+        #selectcountry= "ngModel" 
+        required id="exampleFormControlSelect2">
+        <option *ngFor = "let myOption of countries">{{myOption}}</option>
+      </select>
+      <div>
+      <ul>
+        <li>{{ selectcountry?.control.valid}}</li>
+      </ul>
+    </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Example textarea</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <button>Submit</button>
+  </form>

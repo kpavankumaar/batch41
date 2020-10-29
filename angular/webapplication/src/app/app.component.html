@@ -1,4 +1,40 @@
 
+<div class="container">
+    <app-sample [sample] = "title"></app-sample>
+    <app-childsample (sendData) = "sharedata($event)" > </app-childsample>
+</div>
+
 <app-navbar></app-navbar>
-<h1>Welcome to Angular Session</h1>
+<div class="container">
+    <app-templatedriven></app-templatedriven>
+</div>
+
+<h1>{{ title }}</h1>
+<p [style.color] = 'color'> {{ obj.age }}</p>
 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum numquam incidunt temporibus doloremque maiores ab autem voluptatum assumenda quasi nihil placeat commodi labore deleniti, nobis odit corporis, dignissimos optio quaerat?</p>
+<label for="username"> Username </label> <input type="text" [value] = 'name' (keyup) = 'collectData($event.target.value)' >
+<label for="age"> Age </label> <input type="number" (keyup.enter) = 'collectData($event.target.value)' >
+<div [ngClass] = "isimp ? 'test' : ''">
+    <label for="data"> test </label>
+    <input type="text" value = "test" [ngModel] = 'update' (ngModelChange) = 'update = $event'>
+</div>
+    <input type="text" [(ngModel)] = 'name'>    
+
+<p>{{ update }}</p>
+<!--  template reference variable  -->
+<input #number type="number" placeholder="phone number" (keyup) = 'getPhone(number.value)'>
+<!-- <p *ngIf = "true" >{{number.value}}</p> -->
+
+<ul >
+    <li appCarryArr [array] = 'arr' >default text</li>
+    <li appTriggerout (onClickEvent) = 'customEventListener($event)'> Custom Event trigger</li>
+    <!-- <li appColorProp = 'let item of arr; let i = index' > </li> -->
+    <!-- <li *ngFor = 'let item of arr; let i = index' appColorProp>{{i}} - {{item}}</li> -->
+</ul>
+<h3 appCarryArr> Heading modified by appColorProp attribute directive
+</h3>
+<p appColorProp > this element is modified by attribute directive </p>
+
+<div>
+    <p [ngClass] = 'isimp ? "box": ""'> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque dolorum facere, ratione quam quod reprehenderit neque ex optio, assumenda voluptatum nulla laboriosam corrupti dicta, exercitationem beatae enim aliquam recusandae doloremque?</p>
+</div>
